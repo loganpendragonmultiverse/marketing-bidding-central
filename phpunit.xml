@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit bootstrap="vendor/autoload.php" colors="true" cacheDirectory=".phpunit.cache">
+  <testsuites><testsuite name="Application"><directory>tests/Feature</directory></testsuite></testsuites>
+  <source><include><directory>app</directory></include></source>
+  <php>
+    <env name="APP_ENV" value="testing" force="true"/>
+    <env name="APP_KEY" value="12345678901234567890123456789012" force="true"/>
+    <env name="APP_DEBUG" value="false" force="true"/>
+    <env name="APP_URL" value="http://localhost" force="true"/>
+    <env name="DB_CONNECTION" value="sqlite" force="true"/>
+    <env name="DB_DATABASE" value=":memory:" force="true"/>
+    <env name="CACHE_STORE" value="array" force="true"/>
+    <env name="SESSION_DRIVER" value="array" force="true"/>
+    <env name="MAIL_MAILER" value="array" force="true"/>
+    <env name="QUEUE_CONNECTION" value="sync" force="true"/>
+    <env name="MARKETPLACE_OPEN" value="false" force="true"/>
+    <env name="MARKETPLACE_LEGAL_READY" value="false" force="true"/>
+  </php>
+</phpunit>

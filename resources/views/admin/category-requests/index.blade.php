@@ -1,0 +1,7 @@
+@extends('layouts.app')
+@section('title', 'Category requests | Marketing Bidding Central')
+@section('robots', 'noindex, nofollow')
+@section('content')
+@include('admin._header', ['eyebrow' => 'Marketplace taxonomy', 'title' => 'Category requests', 'description' => 'Review what visitors think is missing before changing the public category set.'])
+<section class="admin-page"><div class="admin-record-grid">@forelse($categoryRequests as $requestItem)<article class="admin-card"><div class="admin-card-head"><div><span class="status-pill">{{ ucfirst($requestItem->status) }}</span><h2>{{ $requestItem->requested_name }}</h2></div><small>{{ $requestItem->created_at->format('M j, Y g:i A') }}</small></div><p>{{ $requestItem->reason ?: 'No reason supplied.' }}</p>@if($requestItem->example_url)<a href="{{ $requestItem->example_url }}" rel="noopener">{{ $requestItem->example_url }}</a>@endif<form class="admin-form" method="post" action="{{ route('admin.category-requests.resolve', $requestItem) }}">@csrf<label>Decision<select name="status"><option value="reviewed">Reviewed</option><option value="accepted">Accepted</option><option value="declined">Declined</option></select></label><label>Admin note<textarea name="admin_note" required>{{ $requestItem->admin_note }}</textarea></label><button class="button secondary">Save decision</button></form></article>@empty<div class="admin-card"><p>No category requests yet.</p></div>@endforelse</div>{{ $categoryRequests->links() }}</section>
+@endsection
