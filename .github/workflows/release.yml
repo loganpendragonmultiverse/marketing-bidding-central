@@ -1,0 +1,29 @@
+name: Release
+on:
+  push:
+    tags: ['v*']
+permissions:
+  contents: read
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+      - uses: shivammathur/setup-php@b604ade2a87db23f8871b7182e69ec5e75effb45
+        with:
+          php-version: '8.3'
+          extensions: curl, dom, mbstring, pdo_sqlite, xml
+          coverage: none
+      - run: cp .env.example .env
+      - run: composer install --no-interaction --prefer-dist
+      - run: composer validate --strict --no-check-version && composer audit --locked && php artisan test && python3 scripts/audit-release.py
+      - name: Verify tag and package
+        run: |
+          test "$GITHUB_REF_NAME" = "v$(cat VERSION)"
+          python3 scripts/package-release.py
+      - name: Publish release assets
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh release create "$GITHUB_REF_NAME" dist/*.zip dist/SHA256SUMS --verify-tag --title "Marketing Bidding Central $GITHUB_REF_NAME" --notes-file CHANGELOG.md

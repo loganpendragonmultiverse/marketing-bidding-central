@@ -1,0 +1,29 @@
+name: CI
+on:
+  push:
+    branches: [main]
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  test:
+    name: PHP ${{ matrix.php }}
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        php: ['8.3', '8.4']
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+      - uses: shivammathur/setup-php@b604ade2a87db23f8871b7182e69ec5e75effb45
+        with:
+          php-version: ${{ matrix.php }}
+          extensions: curl, dom, mbstring, pdo_sqlite, xml
+          coverage: none
+      - run: cp .env.example .env
+      - run: composer install --no-interaction --prefer-dist
+      - run: composer validate --strict --no-check-version
+      - run: composer audit --locked
+      - run: php vendor/bin/pint --test
+      - run: php artisan test
+      - run: python3 scripts/audit-release.py
+      - run: python3 scripts/package-release.py
