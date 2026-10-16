@@ -6,6 +6,7 @@ use App\Http\Controllers\CategoryRequestController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\CustomerAuthController;
 use App\Http\Controllers\MarketplaceController;
+use App\Http\Controllers\RankingLedgerExportController;
 use App\Http\Controllers\StripeWebhookController;
 use App\Http\Controllers\SubmissionController;
 use App\Http\Controllers\UtilityController;
@@ -60,6 +61,7 @@ Route::prefix('admin')->name('admin.')->group(function (): void {
         Route::post('/listings/{listing}/enforce', [AdminController::class, 'enforce'])->name('listings.enforce');
         Route::post('/listings/{listing}', [AdminController::class, 'updateListing'])->name('listings.update');
         Route::post('/listings/{listing}/adjust', [AdminController::class, 'adjustListing'])->name('listings.adjust');
+        Route::get('/ranking-ledger/export', RankingLedgerExportController::class)->name('ranking-ledger.export');
         Route::get('/payments', [AdminController::class, 'payments'])->name('payments.index');
         Route::get('/reports', [AdminController::class, 'reports'])->name('reports.index');
         Route::get('/category-requests', [AdminController::class, 'categoryRequests'])->name('category-requests.index');
