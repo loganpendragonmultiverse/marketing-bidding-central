@@ -11,7 +11,7 @@ return [
     'analytics_salt' => env('MARKETPLACE_ANALYTICS_SALT', env('APP_KEY')),
     'legal_updated_at' => env('MARKETPLACE_LEGAL_UPDATED_AT'),
     'legal_ready' => (bool) env('MARKETPLACE_LEGAL_READY', false),
-    'version' => '1.0.0',
+    'version' => '1.1.0',
     'metadata' => [
         'max_bytes' => 524288,
         'timeout_seconds' => 8,
