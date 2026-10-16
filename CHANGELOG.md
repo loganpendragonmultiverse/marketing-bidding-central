@@ -2,6 +2,8 @@
 
 ## 1.1.0 - 2026-10-16
 
+- Updated Symfony HttpFoundation from 7.4.17 to 7.4.19 for CVE-2026-108082.
+
 Administrators can download a local ranking-ledger inspection CSV from Payments. Choose
 inclusive UTC dates covering at most 366 calendar days. Rows follow creation timestamp and
 ledger ID order, with a captured maximum ID and 500-row read batches. Pending and failed
