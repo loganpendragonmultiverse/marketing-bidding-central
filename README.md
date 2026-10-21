@@ -91,3 +91,7 @@ payment-provider IDs, or provider payloads are included.
 This is an inspection export, not an accounting report. It does not contact providers, send mail,
 perform payments or refunds, or write ledger records. Concurrent updates to existing rows can
 appear during streaming; the export is not a transactional accounting snapshot.
+
+## As-is distribution scope
+
+This project is distributed as-is under the MIT License. Its Forge Gold classification applies to the reviewed v1.1.0 source distribution, documented installation handoff, closed payment gates and synthetic release checks. Future maintenance and features are discretionary. It does not certify production readiness for a particular operator or live Stripe, SMTP, MySQL, hosting or legal-policy acceptance. Before live use, complete the operator checks in [TESTING.md](TESTING.md) and [INSTALLATION.md](INSTALLATION.md). The published v1.1.0 archive remains unchanged; this clarification is a later documentation update on the repository.
