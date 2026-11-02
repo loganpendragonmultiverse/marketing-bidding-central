@@ -27,3 +27,21 @@ Contact replies are handled by the operator outside the application. No central 
 ## Refund reconciliation
 
 Administrative refunds record the provider reference and cumulative refunded amount. Pending provider refunds reserve the corresponding ranking balance. Review their eventual outcome in Stripe; a pending refund that fails or a refund/dispute performed directly in Stripe requires manual reconciliation with an audited balance adjustment. Keep the application database and provider history together when resolving a failed request. This release does not automatically reconcile external refunds or disputes.
+
+## 1.1.0 - 2026-10-16
+
+Administrators can download a local ranking-ledger inspection CSV from Payments. Choose
+inclusive UTC dates covering at most 366 calendar days. Rows follow creation timestamp and
+ledger ID order, with a captured maximum ID and 500-row read batches. Pending and failed
+entries remain visible with their recorded status; exported signed changes and balances are
+stored ledger values, not recalculated payment totals.
+
+Only the UTC creation timestamp, listing ID, public ledger reference, source, status, currency,
+signed change in cents, prior balance in cents, and resulting balance in cents are exported.
+Text cells beginning with whitespace/control characters or spreadsheet formula prefixes receive
+an apostrophe. Numeric cents remain signed integers. No private notes, email, management links,
+payment-provider IDs, or provider payloads are included.
+
+This is an inspection export, not an accounting report. It does not contact providers, send mail,
+perform payments or refunds, or write ledger records. Concurrent updates to existing rows can
+appear during streaming; the export is not a transactional accounting snapshot.
