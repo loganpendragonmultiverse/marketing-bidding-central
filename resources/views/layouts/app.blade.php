@@ -21,10 +21,9 @@
 @if($errors->any())<div class="notice error"><strong>Please correct the highlighted information.</strong><ul>@foreach($errors->all() as $error)<li>{{ $error }}</li>@endforeach</ul></div>@endif
 <main id="main">@yield('content')</main>
 <footer>
-  <a class="brand" href="{{ route('home') }}"><span class="brand-mark"><i></i><i></i><i></i></span><span><strong>Marketing Bidding Central</strong><small>Self-hosted marketplace</small></span></a>
+  <a class="brand" href="{{ route('home') }}"><span class="brand-mark"><i></i><i></i><i></i></span><span><strong>Marketing Bidding Central</strong><small>Self-hosted marketplace · v{{ config('marketplace.version') }}</small></span></a>
   <p>Paid rank reflects confirmed cumulative bid value, not endorsement. Placement can change whenever another project bids.</p>
   <nav class="footer-links" aria-label="Footer"><a href="{{ route('contact') }}">Contact</a><a href="{{ route('category-requests.create') }}">Request a category</a><a href="{{ route('customer.login') }}">Customer login</a><a href="{{ route('legal', 'terms') }}">Terms</a><a href="{{ route('legal', 'privacy') }}">Privacy</a><a href="{{ route('legal', 'refunds') }}">Payment policy</a><a href="{{ route('legal', 'listing-policy') }}">Listing policy</a></nav>
-<p>Version {{ config('marketplace.version') }}</p>
 </footer>
 <script defer src="{{ asset('js/marketplace.js') }}?v=2"></script>
 </body></html>
