@@ -36,7 +36,7 @@ For a production server, follow [INSTALLATION.md](INSTALLATION.md) and [the oper
 
 ## Download
 
-[Marketing Bidding Central 1.1.0 release](https://github.com/loganpendragonmultiverse/marketing-bidding-central/releases/tag/v1.1.0) contains a source ZIP and SHA256SUMS. Install locked dependencies with Composer. Runtime data, accounts, secrets and dependencies are not bundled.
+[Marketing Bidding Central 1.1.1 release](https://github.com/loganpendragonmultiverse/marketing-bidding-central/releases/tag/v1.1.1) contains a source ZIP and SHA256SUMS. Install locked dependencies with Composer. Runtime data, accounts, secrets and dependencies are not bundled.
 
 ## Privacy and safety
 
