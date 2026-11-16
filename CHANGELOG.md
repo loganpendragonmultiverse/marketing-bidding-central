@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.1.1 - 2026-11-16
+
+- Update locked Laravel and Symfony dependencies to patched versions. Composer audit reports no advisories.
+
 ## 1.1.0 - 2026-10-16
 
 - Updated Symfony HttpFoundation from 7.4.17 to 7.4.19 for CVE-2026-108082.
